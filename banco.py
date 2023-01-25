@@ -1,14 +1,14 @@
 import mysql.connector
 from mysql.connector import errorcode
 from flask_bcrypt import generate_password_hash
+import os
 
 print("Conectando...")
 try:
       conn = mysql.connector.connect(
             host='127.0.0.1',
-            user='root',
-            password='marilene123'
-      )
+            user= os.environ.get('USER_BANCO') ,
+            password= os.environ.get('SENHA_BANCO')      )
 except mysql.connector.Error as err:
       if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print('Existe algo errado no nome de usuário ou senha')
